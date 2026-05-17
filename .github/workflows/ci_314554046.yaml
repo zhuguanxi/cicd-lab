@@ -1,0 +1,40 @@
+name: CI Pipeline
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: TypeScript Typecheck 
+        run: npm run typecheck # 確保 package.json 有對應指令
+
+      - name: Prettier Check
+        run: npm run format:check # 檢查格式是否符合規範
+
+      - name: Run Tests
+        run: npm test
+
+      - name: Upload Test Results
+        if: always() # 確保測試失敗也會上傳結果
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results
+          path: coverage/ # 根據專案測試工具調整路徑
