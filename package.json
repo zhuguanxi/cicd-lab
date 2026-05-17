@@ -16,7 +16,7 @@
     "format": "prettier --write .",
     "format:check": "prettier --check ."
   },
-  "engines": {
+      "engines": {
     "node": ">=22 <25"
   },
   "devDependencies": {
