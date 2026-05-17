@@ -25,18 +25,18 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: TypeScript Typecheck 
-        run: npm run typecheck # 確保 package.json 有對應指令
+      - name: TypeScript Typecheck
+        run: npm run typecheck
 
       - name: Prettier Check
-        run: npm run format:check # 檢查格式是否符合規範
+        run: npm run format:check
 
       - name: Run Tests
         run: npm test
 
       - name: Upload Test Results
-        if: always() # 確保測試失敗也會上傳結果
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: test-results
-          path: coverage/ # 根據專案測試工具調整路徑
+          path: coverage/
