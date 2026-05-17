@@ -36,6 +36,7 @@ jobs:
         run: npm run format:check
 
       - name: Run Tests
+        if: always()
         run: npm test
 
       - name: Test Report
