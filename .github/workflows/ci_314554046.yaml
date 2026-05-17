@@ -54,3 +54,11 @@ jobs:
           path: |
             test-results.xml
             coverage/
+
+      - name: Publish Test Report to Summary
+        uses: mikepenz/action-junit-report@v4
+        if: always()
+        with:
+          report_paths: 'test-results.xml'
+          detailed_summary: true
+          include_passed: true
