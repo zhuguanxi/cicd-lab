@@ -26,3 +26,5 @@ describe('Fastify app', () => {
     await app.close();
   });
 });
+
+const errorTest: number = "這是一個字串";
